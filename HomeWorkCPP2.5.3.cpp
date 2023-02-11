@@ -36,14 +36,8 @@ private:
     std::string _name;
 };  
 
-class Triangle :Figure {
+class Triangle :public Figure {
 public:
-    std::string get_name() {
-        return _name;
-    }
-    int get_quanfig() {
-        return _quanfig;
-    }
     int get_side_a() {
         return _side_a;
     }
@@ -91,8 +85,6 @@ protected:
         _angle_a = angle_a_;
         _angle_b = angle_b_;
         _angle_c = angle_c_;
-        _quanfig = quanfig_;
-        _name = name_;
     }
 private:
     int _side_a = 0;
@@ -101,8 +93,6 @@ private:
     int _angle_a = 0;
     int _angle_b = 0;
     int _angle_c = 0;
-    int _quanfig = 0;
-    std::string _name;
 };
 
 class TriangleRight :public Triangle {
@@ -189,34 +179,10 @@ private:
     }
 };
 
-class Quadrilateral :Triangle {
+class Quadrilateral :public Triangle {
 public:
-    std::string get_name() {
-        return _name;
-    }
-    int get_quanfig() {
-        return _quanfig;
-    }
-    int get_side_a() {
-        return _side_a;
-    }
-    int get_side_b() {
-        return _side_b;
-    }
-    int get_side_c() {
-        return _side_c;
-    }
     int get_side_d() {
         return _side_d;
-    }
-    int get_angle_a() {
-        return _angle_a;
-    }
-    int get_angle_b() {
-        return _angle_b;
-    }
-    int get_angle_c() {
-        return _angle_c;
     }
     int get_angle_d() {
         return _angle_d;
@@ -244,28 +210,12 @@ public:
     Quadrilateral() :Quadrilateral("Четырехугольник:", 4, 10, 20, 30, 40, 50, 60, 70, 80) {}
 protected:
     Quadrilateral(std::string name_, int quanfig_, int side_a_, int side_b_, int side_c_, int side_d_, int angle_a_, int angle_b_, int angle_c_, int angle_d_) :Triangle(name_, quanfig_, side_a_, side_b_, side_c_, angle_a_, angle_b_, angle_c_) {
-        _side_a = side_a_;
-        _side_b = side_b_;
-        _side_c = side_c_;
         _side_d = side_d_;
-        _angle_a = angle_a_;
-        _angle_b = angle_b_;
-        _angle_c = angle_c_;
         _angle_d = angle_d_;
-        _quanfig = quanfig_;
-        _name = name_;
     }
 private:
-    int _side_a = 0;
-    int _side_b = 0;
-    int _side_c = 0;
     int _side_d = 0;
-    int _angle_a = 0;
-    int _angle_b = 0;
-    int _angle_c = 0;
     int _angle_d = 0;
-    int _quanfig = 0;
-    std::string _name;
 };
 
 class Parallelogram :public Quadrilateral {
@@ -324,7 +274,7 @@ private:
     }
 };
 
-class Rectrangle :public  Parallelogram {
+class Rectrangle :public Parallelogram {
 public:
     bool check() override {
         if (get_side_a() == get_side_c() && get_side_b() == get_side_d() && get_angle_a() == 90 && get_angle_c() == 90 && get_angle_b() == 90 && get_angle_d() == 90 && get_quanfig() == 4) {
@@ -393,13 +343,13 @@ int main()
     Rhombus rhombus;
     Rectrangle rectrangle;
     Square square;
-    Triangle* par_triangleRight = &triangleRight;
-    Triangle* par_triangleIsos = &triangleIsos;
-    Triangle* par_triangleEquil = &triangleEquil;
-    Quadrilateral* par_parallelogram = &parallelogram;
-    Quadrilateral* par_rhombus = &rhombus;
-    Quadrilateral* par_rectrangle = &rectrangle;
-    Quadrilateral* par_square = &square;
+    Figure* par_triangleRight = &triangleRight;
+    Figure* par_triangleIsos = &triangleIsos;
+    Figure* par_triangleEquil = &triangleEquil;
+    Figure* par_parallelogram = &parallelogram;
+    Figure* par_rhombus = &rhombus;
+    Figure* par_rectrangle = &rectrangle;
+    Figure* par_square = &square;
     figure.print_info();
     triangle.print_info();
     par_triangleRight->print_info();
